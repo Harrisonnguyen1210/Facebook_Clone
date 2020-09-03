@@ -1,6 +1,7 @@
 import 'package:facebook_clone/config/constants.dart';
 import 'package:facebook_clone/config/palette.dart';
 import 'package:facebook_clone/models/models.dart';
+import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class PostContainer extends StatelessWidget {
@@ -20,10 +21,7 @@ class PostContainer extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 25.0,
-                  backgroundImage: NetworkImage(currentUser.imageUrl),
-                ),
+                ProfileCircleAvatar(imageUrl: currentUser.imageUrl),
                 SizedBox(width: 10.0),
                 Text(
                   Constants.sCreatePostPlaceholder,
