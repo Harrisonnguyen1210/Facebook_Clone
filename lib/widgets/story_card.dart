@@ -1,3 +1,4 @@
+import 'package:facebook_clone/config/palette.dart';
 import 'package:facebook_clone/models/models.dart';
 import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -29,19 +30,34 @@ class StoryCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 4.0,
-            left: 4.0,
-            child: ProfileCircleAvatar(
-              imageUrl: isAddStory ? currentUser.imageUrl : story.user.imageUrl,
-            ),
+            top: 8.0,
+            left: 8.0,
+            child: isAddStory
+                ? Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      icon: Icon(Icons.add),
+                      color: Palette.facebookBlue,
+                      onPressed: () {},
+                    ),
+                  )
+                : ProfileCircleAvatar(
+                    imageUrl: story.user.imageUrl,
+                  ),
           ),
           Positioned(
-            bottom: 10,
-            left: 4.0,
+            bottom: 8.0,
+            left: 8.0,
             right: 4.0,
             child: Text(
-              isAddStory ? currentUser.name : story.user.name,
-              style: TextStyle(color: Colors.white),
+              isAddStory ? 'Add to story' : story.user.name,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

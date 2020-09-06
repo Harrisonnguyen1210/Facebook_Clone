@@ -13,16 +13,22 @@ class ProfileCircleAvatar extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 25.0,
-          backgroundImage: NetworkImage(imageUrl),
-        ),
-        isActive ? Positioned(
-          bottom: 0.0,
-          right: 0.0,
+          backgroundColor: Palette.facebookBlue,
           child: CircleAvatar(
-            radius: 6.0,
-            backgroundColor: Palette.online,
+            radius: 23.0,
+            backgroundImage: NetworkImage(imageUrl),
           ),
-        ) : SizedBox.shrink()
+        ),
+        isActive
+            ? Positioned(
+                bottom: 0.0,
+                right: 0.0,
+                child: CircleAvatar(
+                  radius: 6.0,
+                  backgroundColor: Palette.online,
+                ),
+              )
+            : SizedBox.shrink()
       ],
     );
   }
