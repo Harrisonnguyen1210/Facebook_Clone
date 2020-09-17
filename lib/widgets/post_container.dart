@@ -23,9 +23,22 @@ class PostContainer extends StatelessWidget {
               children: [
                 ProfileCircleAvatar(imageUrl: currentUser.imageUrl),
                 SizedBox(width: 10.0),
-                Text(
-                  Constants.sCreatePostPlaceholder,
-                  style: TextStyle(color: Colors.grey),
+                Flexible(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: BorderSide(color: Palette.facebookBlue),
+                        ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(15.0, 2.0, 10.0, 2.0),
+                        hintText: Constants.sCreatePostPlaceholder),
+                    onSaved: (value) {},
+                  ),
                 ),
               ],
             ),
