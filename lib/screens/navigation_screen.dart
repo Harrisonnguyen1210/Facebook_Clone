@@ -20,7 +20,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
   int _currentIndex = 0;
 
   void _tapBottomNavigationItem(int currentIndex) {
-    print(currentIndex);
     setState(() {
       _currentIndex = currentIndex;
     });
