@@ -1,5 +1,7 @@
 import 'package:facebook_clone/config/palette.dart';
-import 'package:facebook_clone/screens/home_screen.dart';
+import 'package:facebook_clone/data/data.dart';
+import 'package:facebook_clone/screens/home_screen/home_screen.dart';
+import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -18,51 +20,67 @@ class _NavigationScreenState extends State<NavigationScreen> {
     Scaffold(),
   ];
   int _currentIndex = 0;
+  List<IconData> _icons = [
+    MdiIcons.home,
+    MdiIcons.televisionPlay,
+    MdiIcons.accountCircleOutline,
+    MdiIcons.accountGroupOutline,
+    MdiIcons.bellOutline,
+    MdiIcons.menu,
+  ];
 
-  void _tapBottomNavigationItem(int currentIndex) {
+  void _tapBottomNavigationItem(int index) {
     setState(() {
-      _currentIndex = currentIndex;
+      _currentIndex = index;
+    });
+  }
+
+  void _tapTabBarItem(int index) {
+    setState(() {
+      _currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Palette.facebookBlue,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) => _tapBottomNavigationItem(index),
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.home),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.televisionPlay),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.accountCircleOutline),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.accountGroupOutline),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.bellOutline),
-            title: SizedBox.shrink(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.menu),
-            title: SizedBox.shrink(),
-          ),
-        ],
+    final Size screenSize = MediaQuery.of(context).size;
+
+    return DefaultTabController(
+      length: _icons.length,
+      child: Scaffold(
+        appBar: Responsive.isDesktop(context)
+            ? PreferredSize(
+                child: CustomAppBar(
+                  icons: _icons,
+                  currentUser: currentUser,
+                  currentIndex: _currentIndex,
+                  onTap: _tapTabBarItem,
+                ),
+                preferredSize: Size(screenSize.width, 60.0),
+              )
+            : null,
+        body: IndexedStack(
+          index: _currentIndex,
+          children: screens,
+        ),
+        bottomNavigationBar: !Responsive.isDesktop(context)
+            ? BottomNavigationBar(
+                selectedItemColor: Palette.facebookBlue,
+                type: BottomNavigationBarType.fixed,
+                onTap: (index) => _tapBottomNavigationItem(index),
+                currentIndex: _currentIndex,
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                items: [
+                  ..._icons
+                      .map(
+                        (iconData) => BottomNavigationBarItem(
+                            icon: Icon(iconData), label: ''),
+                      )
+                      .toList()
+                ],
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }
