@@ -1,4 +1,3 @@
-import 'package:facebook_clone/config/palette.dart';
 import 'package:facebook_clone/models/models.dart';
 import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,9 @@ class Stories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 220.0,
-      color: Colors.white,
+      color: Responsive.isMobile(context)
+          ? Colors.white
+          : Theme.of(context).scaffoldBackgroundColor,
       child: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
         scrollDirection: Axis.horizontal,
