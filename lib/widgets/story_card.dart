@@ -4,15 +4,13 @@ import 'package:facebook_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class StoryCard extends StatelessWidget {
-  final bool isAddStory;
-  final User currentUser;
-  final Story story;
+  final User? currentUser;
+  final Story? story;
 
   const StoryCard({
-    this.isAddStory = false,
     this.currentUser,
     this.story,
-  });
+  }) : assert((currentUser != null || story != null));
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class StoryCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(15.0),
             child: Image.network(
-              isAddStory ? currentUser.imageUrl : story.imageUrl,
+              currentUser != null ? currentUser!.imageUrl : story!.imageUrl,
               fit: BoxFit.cover,
               width: 110.0,
               height: double.infinity,
@@ -47,7 +45,7 @@ class StoryCard extends StatelessWidget {
           Positioned(
             top: 8.0,
             left: 8.0,
-            child: isAddStory
+            child: currentUser != null
                 ? Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -60,7 +58,7 @@ class StoryCard extends StatelessWidget {
                     ),
                   )
                 : ProfileCircleAvatar(
-                    imageUrl: story.user.imageUrl,
+                    imageUrl: story!.user.imageUrl,
                   ),
           ),
           Positioned(
@@ -68,7 +66,7 @@ class StoryCard extends StatelessWidget {
             left: 8.0,
             right: 4.0,
             child: Text(
-              isAddStory ? 'Add to story' : story.user.name,
+              currentUser != null ? 'Add to story' : story!.user.name,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

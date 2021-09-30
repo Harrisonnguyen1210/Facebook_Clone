@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Rooms extends StatelessWidget {
   final List<User> onlineUsers;
 
-  Rooms({@required this.onlineUsers});
+  Rooms({required this.onlineUsers});
 
   @override
   Widget build(BuildContext context) {

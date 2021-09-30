@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class PostContainer extends StatelessWidget {
   final User currentUser;
 
-  PostContainer({this.currentUser});
+  PostContainer({required this.currentUser});
 
   void _selectLive() {}
 

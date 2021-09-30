@@ -8,7 +8,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 class PostTile extends StatelessWidget {
   final Post post;
 
-  const PostTile({Key key, this.post}) : super(key: key);
+  const PostTile({Key? key, required this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ class PostTile extends StatelessWidget {
           ListTile(
             leading: ProfileCircleAvatar(imageUrl: post.user.imageUrl),
             title: Text(
-                post.user.name,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              post.user.name,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             subtitle: Row(
               children: [
                 Text(
@@ -48,7 +48,7 @@ class PostTile extends StatelessWidget {
           ),
           post.imageUrl != null
               ? CachedNetworkImage(
-                  imageUrl: post.imageUrl,
+                  imageUrl: post.imageUrl!,
                   height: 300,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -62,7 +62,7 @@ class PostTile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      FlatButton.icon(
+                      TextButton.icon(
                         onPressed: () {},
                         icon: Container(
                           height: 20.0,
@@ -108,17 +108,17 @@ class PostTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(MdiIcons.thumbUpOutline, color: Colors.grey),
                 label: Text('Like'),
                 onPressed: () {},
               ),
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(MdiIcons.commentOutline, color: Colors.grey),
                 label: Text('Comment'),
                 onPressed: () {},
               ),
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(MdiIcons.shareOutline, color: Colors.grey),
                 label: Text('Share'),
                 onPressed: () {},

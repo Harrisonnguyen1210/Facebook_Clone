@@ -12,7 +12,7 @@ class RoomButton extends StatelessWidget {
           ),
           side: BorderSide(
             width: 3.0,
-            color: Colors.blueAccent[100],
+            color: Colors.blueAccent[100]!,
           ),
           textStyle: TextStyle(color: Palette.facebookBlue)),
       child: Row(

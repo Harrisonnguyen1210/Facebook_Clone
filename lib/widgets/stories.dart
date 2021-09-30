@@ -6,7 +6,7 @@ class Stories extends StatelessWidget {
   final User currentUser;
   final List<Story> stories;
 
-  const Stories({this.currentUser, this.stories});
+  const Stories({required this.currentUser, required this.stories});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Stories extends StatelessWidget {
         itemCount: stories.length + 1,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return StoryCard(isAddStory: true, currentUser: currentUser);
+            return StoryCard(currentUser: currentUser);
           }
           return Padding(
             padding: const EdgeInsets.only(left: 10.0),

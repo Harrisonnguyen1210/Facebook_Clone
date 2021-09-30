@@ -11,10 +11,10 @@ class CustomAppBar extends StatelessWidget {
   final Function(int) onTap;
 
   const CustomAppBar({
-    @required this.currentUser,
-    @required this.currentIndex,
-    @required this.icons,
-    @required this.onTap,
+    required this.currentUser,
+    required this.currentIndex,
+    required this.icons,
+    required this.onTap,
   });
 
   void search() {}
